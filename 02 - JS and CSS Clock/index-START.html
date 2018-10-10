@@ -68,6 +68,27 @@
       transition-timing-function: cubic-bezier(0.1, 3.5, 0.5, 1);
     }
 
+    .transition-fix {
+      transition: none;
+    }
+
+    .hour-hand {
+      height: 15px;
+      background-color: rgba(0, 0, 0, 1);
+      width: 30%;
+      left: 20%;
+    }
+
+    .min-hand {
+      height: 10px;
+      background-color: rgba(20, 20, 20, 1);
+    }
+
+    .second-hand {
+      height: 3px;
+      background-color: rgba(50, 50, 50, 1);
+    }
+
   </style>
 
   <script>
@@ -82,14 +103,20 @@
       const seconds = now.getSeconds();
       const secondsDegrees = ((seconds / 60) * 360) + 90;
       secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      if (seconds === 0) secondHand.classList.add('transition-fix');
+      else secondHand.classList.remove('transition-fix');
 
       const mins = now.getMinutes();
       const minsDegrees = ((mins / 60) * 360) + 90;
       minsHand.style.transform = `rotate(${minsDegrees}deg)`;
+      if (mins === 0) minsHand.classList.add('transition-fix');
+      else minsHand.classList.remove('transition-fix');
 
       const hours = now.getHours();
       const hoursDegrees = ((hours / 12) * 360) + 90;
       hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      if (hours === 0) hourHand.classList.add('transition-fix');
+      else hourHand.classList.remove('transition-fix');
     }
 
     setInterval(setDate, 1000)
