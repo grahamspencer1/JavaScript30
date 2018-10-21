@@ -6,7 +6,24 @@
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+<h1>Insert Konami Code</h1>
+
 <script>
+
+const pressed = [];
+const konamiCode = 'ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba';
+
+window.addEventListener('keyup', (e) => {
+  console.log(e.key);
+  pressed.push(e.key);
+  pressed.splice(-konamiCode.length - 1, pressed.length - konamiCode.length);
+  if(pressed.join('').includes(konamiCode)) {
+    console.log("Ding ding ding!");
+    cornify_add();
+  }
+  console.log(pressed);
+});
+
 </script>
 </body>
 </html>
